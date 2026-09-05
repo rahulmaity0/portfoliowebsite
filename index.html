@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rahul Maity — Backend Engineer</title>
+<meta name="description" content="Rahul Maity — B.E. in AI &amp; Data Science, Mumbai. Java and Spring Boot backend systems, REST APIs, and the REST Assured test frameworks that verify them.">
+<meta property="og:title" content="Rahul Maity — Backend Engineer">
+<meta property="og:description" content="Java · Spring Boot · REST APIs · SDET. Selected backend and test-automation work.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;1,6..72,400&family=JetBrains+Mono:wght@400;500;700&display=swap">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<a class="skip" href="#work">Skip to work</a>
+
+<header class="topbar">
+  <div class="wrap topbar-inner">
+    <nav class="nav" aria-label="Sections">
+      <a href="#top" class="is-current">Home</a>
+      <a href="#work">Work</a>
+      <a href="#stack" class="nav-optional">Stack</a>
+      <a href="#background">Background</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <button type="button" id="theme" class="theme" aria-label="Switch to dark theme" aria-pressed="false">
+      <span class="theme-glyph" aria-hidden="true">☾</span>
+    </button>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- ───────────────────── hero ───────────────────── -->
+  <section class="wrap hero">
+    <h1 class="pixel">I'm Rahul.</h1>
+    <p class="role">Backend Engineer</p>
+    <ul class="socials">
+      <li><a href="mailto:rkmaity13@gmail.com" aria-label="Email">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="2.5" y="5" width="19" height="14" rx="1"/><path d="M2.5 6.5 12 13l9.5-6.5"/></svg></a></li>
+      <li><a href="https://github.com/rahulmaity0" rel="noopener" aria-label="GitHub">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M12 1.8a10.2 10.2 0 0 0-3.2 19.9c.5.1.7-.2.7-.5v-1.9c-2.8.6-3.4-1.3-3.4-1.3-.5-1.2-1.1-1.5-1.1-1.5-.9-.6.1-.6.1-.6 1 .1 1.5 1 1.5 1 .9 1.5 2.4 1.1 3 .8.1-.7.3-1.1.6-1.4-2.2-.3-4.6-1.1-4.6-5 0-1.1.4-2 1-2.7-.1-.3-.4-1.3.1-2.7 0 0 .8-.3 2.7 1a9.4 9.4 0 0 1 5 0c1.9-1.3 2.7-1 2.7-1 .5 1.4.2 2.4.1 2.7.6.7 1 1.6 1 2.7 0 3.9-2.4 4.7-4.6 5 .4.3.7.9.7 1.9v2.8c0 .3.2.6.7.5A10.2 10.2 0 0 0 12 1.8Z"/></svg></a></li>
+      <li><a href="https://linkedin.com/in/rahulmaity" rel="noopener" aria-label="LinkedIn">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5ZM3 9.5h4V21H3V9.5Zm6.5 0h3.8v1.6h.1c.5-1 1.8-2 3.8-2 4 0 4.8 2.6 4.8 6V21h-4v-5.2c0-1.3 0-2.9-1.8-2.9s-2.1 1.4-2.1 2.8V21h-4V9.5Z"/></svg></a></li>
+    </ul>
+  </section>
+
+  <!-- ───────────────────── statement + canvas ───────────────────── -->
+  <section class="wrap statement">
+    <p class="label">Invariant</p>
+    <p class="say">A ledger either balances or it doesn't. That's the part of backend work I like &mdash; transaction boundaries, rounding rules, making sure a retry doesn't charge someone twice. The rest is plumbing, and I don't mind plumbing.</p>
+
+    <figure class="plot">
+      <figcaption class="label" id="plot-caption">12s loop &middot; 1 topic &middot; 3 partitions &middot; at-least-once</figcaption>
+      <canvas id="stream" aria-labelledby="plot-caption" role="img"></canvas>
+    </figure>
+  </section>
+
+  <!-- ───────────────────── work ───────────────────── -->
+  <section class="wrap section" id="work">
+    <h2 class="head pixel">Work</h2>
+    <ol class="cards">
+
+      <li class="card card-lead">
+        <p class="label">Ledger &amp; inventory</p>
+        <h3>Jewellery Ledger &amp; Inventory System</h3>
+        <p class="say">Every issue and receipt updates both the locker inventory and the client's balance inside one <code>@Transactional</code> method, so the two can never drift out of sync. The making charge works as a purity uplift: the client is billed at purity plus making charge, but the locker only loses the metal that actually left. The gap between the two is the margin. <code>BigDecimal</code> with explicit <code>HALF_UP</code> rounding throughout, and two rules the service checks instead of assuming: an issue can't exceed the gold in the locker, and a receipt can't exceed what the client owes. REST endpoints cover clients, per-client ledgers, a dashboard and a monthly JPA report, behind stateless JWT auth.</p>
+        <p class="pipe"><span>POST /api/transactions</span>
+<span>@Transactional</span>
+<span>locker + client balance</span>
+<span>invariant checks</span>
+<span>ledger</span></p>
+        <ul class="chips"><li>Spring Boot</li>
+<li>Spring Security</li>
+<li>JWT + BCrypt</li>
+<li>JPA / Hibernate</li>
+<li>BigDecimal</li></ul>
+        <p class="go"><a href="https://github.com/rahulmaity0/Inventory-Management" rel="noopener">Source</a></p>
+      </li>
+
+      <li class="card">
+        <p class="label">SDET</p>
+        <h3>Payments API Test Automation Framework</h3>
+        <p class="say">A Spring Boot payments API for transfers, merchant payments and balances, plus the REST Assured suite that tests it. I wrote both sides. An API client, reusable request specs, request models, a test-data factory and a shared base class keep the HTTP setup out of the test classes, so those only hold assertions. The tests go after the cases that cost money: duplicate payments that must stay idempotent, insufficient funds, and high-value payments held for fraud review. It runs against a real embedded server on a random port, and GitHub Actions publishes an Allure report on every push.</p>
+        <p class="pipe"><span>test</span>
+<span>request spec</span>
+<span>payments API</span>
+<span>contract + negative assertions</span>
+<span>Allure in CI</span></p>
+        <ul class="chips"><li>REST Assured</li>
+<li>JUnit 5</li>
+<li>Allure</li>
+<li>GitHub Actions</li>
+<li>JSON Schema</li></ul>
+        <p class="go"><a href="https://github.com/rahulmaity0/banking-api-test-automation-framework" rel="noopener">Source</a></p>
+      </li>
+
+      <li class="card">
+        <p class="label">Web service</p>
+        <h3>URL Shortener Service</h3>
+        <p class="say">Shortens long URLs, redirects with an HTTP 302 and a <code>Location</code> header, and tracks a click count per link. Codes are six base62 characters, so about 56 billion of them. Each one is checked against the database before use, and after ten tries it gives up rather than looping forever. Click counts go up through JPA dirty checking inside a transaction instead of an explicit save, and Bean Validation throws out bad URLs before they reach the service.</p>
+        <p class="pipe"><span>POST /api/urls</span>
+<span>base62 code</span>
+<span>collision check</span>
+<span>302 + Location</span>
+<span>click count</span></p>
+        <ul class="chips"><li>Spring Boot</li>
+<li>JPA / Hibernate</li>
+<li>Bean Validation</li>
+<li>JUnit 5</li>
+<li>MockMvc</li></ul>
+        <p class="go"><a href="https://github.com/rahulmaity0/url-shortener" rel="noopener">Source</a></p>
+      </li>
+
+      <li class="card">
+        <p class="label">Streaming</p>
+        <h3>E-Commerce Stream Analytics Pipeline</h3>
+        <p class="say">A producer service mints order events onto a Kafka topic; a consumer service reads them, writes to PostgreSQL and exposes analytics endpoints, with Metabase reading the same tables for revenue, top-product and regional dashboards. Kafka sits in the middle so the two services never call each other. The consumer can be down for a while and catch up from its offset when it comes back. Duplicate events are handled by making <code>order_id</code> the primary key.</p>
+        <p class="pipe"><span>producer-service</span>
+<span>kafka topic</span>
+<span>consumer-service</span>
+<span>postgres</span>
+<span>metabase</span></p>
+        <ul class="chips"><li>Spring Kafka</li>
+<li>PostgreSQL</li>
+<li>Docker Compose</li>
+<li>Metabase</li>
+<li>Multi-module Maven</li></ul>
+        <p class="go"><a href="https://github.com/rahulmaity0/ecommerce-stream-analytics" rel="noopener">Source</a></p>
+      </li>
+
+      <li class="card">
+        <p class="label">Retrieval AI</p>
+        <h3>Document RAG API</h3>
+        <p class="say">Uploaded PDFs get parsed page by page with Spring AI's <code>PagePdfDocumentReader</code>, embedded, then indexed into a vector store. A question runs a similarity search first and the chat client answers only from the chunks that come back. That restriction is the whole point &mdash; without it the model starts making things up. Endpoints sit behind Spring Security.</p>
+        <p class="pipe"><span>PDF upload</span>
+<span>chunk + embed</span>
+<span>vector store</span>
+<span>similarity search</span>
+<span>grounded answer</span></p>
+        <ul class="chips"><li>Spring AI</li>
+<li>OpenAI</li>
+<li>Vector store</li>
+<li>Spring Security</li>
+<li>Java 17</li></ul>
+        <p class="go"><a href="https://github.com/rahulmaity0/document-rag-api" rel="noopener">Source</a></p>
+      </li>
+
+    </ol>
+  </section>
+
+  <!-- ───────────────────── stack ───────────────────── -->
+  <section class="wrap section" id="stack">
+    <h2 class="head pixel">Stack</h2>
+    <dl class="grid">
+      <div><dt class="label">Languages</dt><dd>Java (Core &amp; J2EE) &middot; SQL &middot; PostgreSQL</dd></div>
+      <div><dt class="label">Backend</dt><dd>Spring Boot &middot; Spring Data JPA / Hibernate &middot; REST API development &middot; Spring Security (JWT, BCrypt)</dd></div>
+      <div><dt class="label">Testing &amp; QA</dt><dd>REST Assured &middot; JUnit 5 &middot; MockMvc &middot; API testing &middot; Regression testing</dd></div>
+      <div><dt class="label">Tools</dt><dd>Git &middot; Maven &middot; GitHub Actions &middot; Allure</dd></div>
+      <div><dt class="label">Concepts</dt><dd>OOP &middot; Data structures &amp; algorithms &middot; DBMS &middot; SDLC</dd></div>
+      <div><dt class="label">Also built with</dt><dd>Apache Kafka &middot; Spring AI &middot; Docker Compose &middot; Metabase</dd></div>
+    </dl>
+  </section>
+
+  <!-- ───────────────────── background ───────────────────── -->
+  <section class="wrap section" id="background">
+    <h2 class="head pixel">Background</h2>
+
+    <div class="entry">
+      <p class="label">Jun 2024 &ndash; May 2026 &middot; Mumbai</p>
+      <h3>Family Business <span class="sub">&mdash; Business Operations &amp; Client Relations</span></h3>
+      <ul class="bullets">
+        <li>Managed day-to-day operations for a gold manufacturing business, growing sales and revenue through direct client relationship management, and digitized manual inventory and transaction tracking to improve record accuracy and reporting turnaround.</li>
+        <li>Continued building backend engineering skills independently alongside operational responsibilities, applying Java and Spring Boot to real business problems from the role above.</li>
+      </ul>
+    </div>
+
+    <div class="entry">
+      <p class="label">Aug 2020 &ndash; May 2024 &middot; Mumbai</p>
+      <h3>Thadomal Shahani Engineering College <span class="sub">&mdash; B.E. in Artificial Intelligence and Data Science</span></h3>
+      <p class="say meta">CGPA 8.31 / 10</p>
+    </div>
+  </section>
+
+  <!-- ───────────────────── contact ───────────────────── -->
+  <section class="wrap section" id="contact">
+    <h2 class="head pixel">Contact</h2>
+    <p class="say">I'm looking for Software Engineer, Backend Developer or SDET roles. Email is the quickest way to reach me. Every project above is public, so you can clone any of it and run <code>./mvnw spring-boot:run</code>.</p>
+    <dl class="grid grid-contact">
+      <div><dt class="label">Email</dt><dd><a href="mailto:rkmaity13@gmail.com">rkmaity13@gmail.com</a></dd></div>
+      <div><dt class="label">Phone</dt><dd><a href="tel:+919867554959">+91 98675 54959</a></dd></div>
+      <div><dt class="label">LinkedIn</dt><dd><a href="https://linkedin.com/in/rahulmaity" rel="noopener">linkedin.com/in/rahulmaity</a></dd></div>
+      <div><dt class="label">GitHub</dt><dd><a href="https://github.com/rahulmaity0" rel="noopener">github.com/rahulmaity0</a></dd></div>
+      <div><dt class="label">Location</dt><dd>Mumbai, India</dd></div>
+    </dl>
+  </section>
+
+</main>
+
+<footer class="wrap foot">
+  <p class="label">Rahul Maity &middot; Mumbai, India</p>
+  <p class="label"><span id="year">2026</span></p>
+</footer>
+
+<script src="main.js"></script>
+</body>
+</html>

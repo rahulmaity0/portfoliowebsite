@@ -1,0 +1,283 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rahul Maity — Backend Engineer</title>
+<meta name="description" content="Rahul Maity — B.E. in AI &amp; Data Science, Mumbai. Java and Spring Boot backend systems, REST APIs, and the REST Assured test frameworks that verify them. Seeking Software Engineer, Backend Developer or SDET roles.">
+<meta property="og:title" content="Rahul Maity — Backend Engineer">
+<meta property="og:description" content="Java · Spring Boot · REST APIs · SDET. Selected backend and test-automation work.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&family=JetBrains+Mono:wght@400;500;700&display=swap">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<a class="skip" href="#work">Skip to work</a>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="mark" href="#top"><span class="mark-name">Rahul Maity</span>
+<span class="mark-role">backend engineer</span></a>
+    <nav class="nav" aria-label="Sections">
+      <a href="#about">about</a>
+      <a href="#stack" class="nav-optional">stack</a>
+      <a href="#work">work</a>
+      <a href="#background">background</a>
+      <a href="#contact">contact</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- ───────────────────────── hero ───────────────────────── -->
+  <section class="hero">
+    <div class="hero-copy">
+      <p class="eyebrow">Java &middot; Spring Boot &middot; SDET &middot; Mumbai, India</p>
+      <h1>I build the half of the product<br>nobody sees.</h1>
+      <p class="lede">I have a B.E. in AI &amp; Data Science and I build Java backend systems in Spring Boot &mdash; transactional REST APIs where the numbers have to come out right, and the test suites that check them. Looking for an entry-level Software Engineer, Backend Developer or SDET/QA Automation role.</p>
+      <div class="cta">
+        <a class="btn btn-primary" href="#work">Selected work</a>
+        <a class="btn" href="https://github.com/rahulmaity0" rel="noopener">GitHub</a>
+        <a class="btn" href="https://linkedin.com/in/rahulmaity" rel="noopener">LinkedIn</a>
+        <a class="btn" href="mailto:rkmaity13@gmail.com">rkmaity13@gmail.com</a>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ───────────────────────── about ───────────────────────── -->
+  <section class="band" id="about">
+    <p class="spine">About</p>
+    <div class="band-body prose">
+      <p>I graduated in Artificial Intelligence &amp; Data Science and have spent the time since on the server side, in <strong>Java and Spring Boot</strong>. The projects below taught me the most, and they keep coming back to the same three things.</p>
+      <p><strong>Getting the numbers right.</strong> The jewellery ledger runs a real gold business, so a rounding error isn't a bug report, it's gold missing from a locker. That meant <code>BigDecimal</code> with explicit rounding everywhere, one <code>@Transactional</code> boundary around inventory and balance so they can't drift apart, and rules the service refuses to break.</p>
+      <p><strong>Testing properly.</strong> On the payments framework I wrote both the API and the tests, which is the quickest way to find out how much of a system lives in its unhappy paths: duplicate payments, insufficient funds, high-value transfers held for fraud review.</p>
+      <p><strong>Understanding the layer below.</strong> Beyond the résumé projects I've built an event-driven Kafka pipeline and a retrieval-augmented service on Spring AI, mostly to find out what changes when a call becomes a message on a topic, or when an answer has to come from a document instead of a model's memory.</p>
+    </div>
+  </section>
+
+  <!-- ───────────────────────── stack ───────────────────────── -->
+  <section class="band" id="stack">
+    <p class="spine">Stack</p>
+    <div class="band-body">
+      <dl class="stack">
+        <div class="stack-group">
+          <dt>Languages</dt>
+          <dd><span>Java (Core &amp; J2EE)</span>
+<span>SQL</span>
+<span>PostgreSQL</span></dd>
+        </div>
+        <div class="stack-group">
+          <dt>Backend</dt>
+          <dd><span>Spring Boot</span>
+<span>Spring Data JPA / Hibernate</span>
+<span>REST API development</span>
+<span>Spring Security (JWT, BCrypt)</span></dd>
+        </div>
+        <div class="stack-group">
+          <dt>Testing &amp; QA</dt>
+          <dd><span>REST Assured</span>
+<span>JUnit 5</span>
+<span>MockMvc</span>
+<span>API testing</span>
+<span>Regression testing</span></dd>
+        </div>
+        <div class="stack-group">
+          <dt>Tools</dt>
+          <dd><span>Git</span>
+<span>Maven</span>
+<span>GitHub Actions</span>
+<span>Allure</span></dd>
+        </div>
+        <div class="stack-group">
+          <dt>Concepts</dt>
+          <dd><span>OOP</span>
+<span>Data structures &amp; algorithms</span>
+<span>DBMS</span>
+<span>SDLC</span></dd>
+        </div>
+        <div class="stack-group">
+          <dt>Also built with</dt>
+          <dd><span>Apache Kafka</span>
+<span>Spring AI</span>
+<span>Docker Compose</span>
+<span>Metabase</span></dd>
+        </div>
+      </dl>
+    </div>
+  </section>
+
+  <!-- ───────────────────────── work ───────────────────────── -->
+  <section class="band band-work" id="work">
+    <p class="spine">Work</p>
+    <div class="band-body">
+      <ol class="records">
+
+        <li class="record record-lead">
+          <div class="record-meta">
+            <span class="domain">Ledger &amp; inventory</span>
+            <span class="repo">Inventory-Management</span>
+          </div>
+          <div class="record-main">
+            <h2>Jewellery Ledger &amp; Inventory System</h2>
+            <p class="record-role">The backend that runs the books of a working gold manufacturing business.</p>
+            <p class="prose">Every issue and receipt updates both the locker inventory and the client's balance inside one <code>@Transactional</code> method, so the two can never drift out of sync. The trade's making charge is modelled as an <em>effective-purity uplift</em>: an issue bills the client at purity plus making charge, while the locker is debited only the metal that physically left &mdash; and the difference between those two numbers is the business margin. <code>BigDecimal</code> with explicit <code>HALF_UP</code> rounding throughout, and two rules the service checks instead of assuming: an issue can't exceed the gold in the locker, and a receipt can't exceed what the client owes. REST endpoints cover clients, per-client ledgers, a dashboard and a monthly JPA report, all behind stateless JWT auth. Built on a feature branch and merged via pull request.</p>
+            <p class="flow"><span>POST /api/transactions</span>
+<span>@Transactional</span>
+<span>locker + client balance</span>
+<span>invariant checks</span>
+<span>ledger &amp; monthly report</span></p>
+            <ul class="tags"><li>Spring Boot</li><li>Spring Security</li><li>JWT + BCrypt</li><li>JPA / Hibernate</li><li>BigDecimal</li></ul>
+            <p class="links"><a href="https://github.com/rahulmaity0/Inventory-Management" rel="noopener">Source &rarr;</a></p>
+          </div>
+        </li>
+
+        <li class="record">
+          <div class="record-meta">
+            <span class="domain">SDET</span>
+            <span class="repo">banking-api-test-automation-framework</span>
+          </div>
+          <div class="record-main">
+            <h2>Payments API Test Automation Framework</h2>
+            <p class="record-role">I wrote both the API and the suite that tests it.</p>
+            <p class="prose">A Spring Boot payments API handling transfers, merchant payments and account balances, paired with a layered REST Assured framework. The framework separates an API client, reusable request specifications, request models, a centralised test-data factory and a shared base class, so test classes contain assertions instead of HTTP plumbing. Coverage goes after the paths that actually cost money: idempotent duplicate payments, insufficient funds, and high-value payments flagged for fraud review. The suite runs against a real embedded server on a random port, publishing Allure reports from GitHub Actions on every push.</p>
+            <p class="flow"><span>test</span>
+<span>request spec</span>
+<span>payments API</span>
+<span>contract + negative assertions</span>
+<span>Allure in CI</span></p>
+            <ul class="tags"><li>REST Assured</li><li>JUnit 5</li><li>Allure</li><li>GitHub Actions</li><li>JSON Schema</li></ul>
+            <p class="links"><a href="https://github.com/rahulmaity0/banking-api-test-automation-framework" rel="noopener">Source &rarr;</a></p>
+          </div>
+        </li>
+
+        <li class="record">
+          <div class="record-meta">
+            <span class="domain">Web service</span>
+            <span class="repo">url-shortener</span>
+          </div>
+          <div class="record-main">
+            <h2>URL Shortener Service</h2>
+            <p class="record-role">Small enough to hold in your head, which is what makes the edge cases interesting.</p>
+            <p class="prose">A REST API that shortens long URLs, redirects visitors with an HTTP 302 and a <code>Location</code> header, and tracks a click count per link. Codes are six collision-safe base62 characters &mdash; roughly 56 billion combinations &mdash; with each candidate checked against the database before use and retries capped, so a saturated keyspace fails fast instead of looping forever. Click counts increment through JPA dirty checking inside a transaction rather than an explicit save call, and incoming URLs are rejected by Bean Validation before they ever reach the service layer. Integration tests cover redirect behaviour, click counting, validation failures and unknown codes.</p>
+            <p class="flow"><span>POST /api/urls</span>
+<span>base62 code</span>
+<span>collision check</span>
+<span>302 + Location</span>
+<span>click count</span></p>
+            <ul class="tags"><li>Spring Boot</li><li>JPA / Hibernate</li><li>Bean Validation</li><li>JUnit 5</li><li>MockMvc</li></ul>
+            <p class="links"><a href="https://github.com/rahulmaity0/url-shortener" rel="noopener">Source &rarr;</a></p>
+          </div>
+        </li>
+
+        <li class="record">
+          <div class="record-meta">
+            <span class="domain">Streaming</span>
+            <span class="repo">ecommerce-stream-analytics</span>
+          </div>
+          <div class="record-main">
+            <h2>E-Commerce Stream Analytics Pipeline</h2>
+            <p class="record-role">Two Spring Boot services, one Kafka topic, a database and a dashboard.</p>
+            <p class="prose">A producer service mints order events onto a Kafka topic; a consumer service reads them, writes to PostgreSQL and exposes analytics endpoints, with Metabase reading the same tables for revenue, top-product and regional dashboards. Kafka sits in the middle so the two services never call each other. The consumer can be down for a while and catch up from its offset when it comes back. Duplicate events are handled by making <code>order_id</code> the primary key.</p>
+            <p class="flow"><span>producer-service</span>
+<span>kafka topic</span>
+<span>consumer-service</span>
+<span>postgres</span>
+<span>metabase</span></p>
+            <ul class="tags"><li>Spring Kafka</li><li>PostgreSQL</li><li>Docker Compose</li><li>Metabase</li><li>Multi-module Maven</li></ul>
+            <p class="links"><a href="https://github.com/rahulmaity0/ecommerce-stream-analytics" rel="noopener">Source &rarr;</a></p>
+          </div>
+        </li>
+
+        <li class="record">
+          <div class="record-meta">
+            <span class="domain">Retrieval AI</span>
+            <span class="repo">document-rag-api</span>
+          </div>
+          <div class="record-main">
+            <h2>Document RAG API</h2>
+            <p class="record-role">Ask questions of a PDF and get answers from the PDF, not from the model.</p>
+            <p class="prose">Uploaded PDFs get parsed page by page with Spring AI's <code>PagePdfDocumentReader</code>, embedded, then indexed into a vector store. A question runs a similarity search first, and the chat client answers strictly from the chunks that come back &mdash; the constraint is the feature, because it is what stops the model from filling gaps with plausible fiction. Endpoints sit behind Spring Security.</p>
+            <p class="flow"><span>PDF upload</span>
+<span>chunk + embed</span>
+<span>vector store</span>
+<span>similarity search</span>
+<span>grounded answer</span></p>
+            <ul class="tags"><li>Spring AI</li><li>OpenAI</li><li>Vector store</li><li>Spring Security</li><li>Java 17</li></ul>
+            <p class="links"><a href="https://github.com/rahulmaity0/document-rag-api" rel="noopener">Source &rarr;</a></p>
+          </div>
+        </li>
+
+      </ol>
+    </div>
+  </section>
+
+  <!-- ───────────────────────── background ───────────────────────── -->
+  <section class="band" id="background">
+    <p class="spine">Background</p>
+    <div class="band-body">
+
+      <div class="group">
+        <h2 class="group-label">Experience</h2>
+        <ul class="entries">
+          <li class="entry">
+            <p class="entry-when">Jun 2024 &ndash; May 2026<br><span class="entry-place">Mumbai, India</span></p>
+            <div class="entry-main">
+              <h3>Family Business</h3>
+              <p class="entry-sub">Business Operations &amp; Client Relations</p>
+              <ul>
+                <li>Managed day-to-day operations for a gold manufacturing business, growing sales and revenue through direct client relationship management, and digitized manual inventory and transaction tracking to improve record accuracy and reporting turnaround.</li>
+                <li>Continued building backend engineering skills independently alongside operational responsibilities, applying Java and Spring Boot to real business problems from the role above.</li>
+              </ul>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <div class="group">
+        <h2 class="group-label">Education</h2>
+        <ul class="entries">
+          <li class="entry">
+            <p class="entry-when">Aug 2020 &ndash; May 2024<br><span class="entry-place">Mumbai, India</span></p>
+            <div class="entry-main">
+              <h3>Thadomal Shahani Engineering College</h3>
+              <p class="entry-sub">B.E. in Artificial Intelligence and Data Science</p>
+              <p class="entry-note">CGPA 8.31 / 10</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ───────────────────────── contact ───────────────────────── -->
+  <section class="band band-contact" id="contact">
+    <p class="spine">Contact</p>
+    <div class="band-body">
+      <h2 class="contact-head">Open to Software Engineer, Backend Developer and SDET roles.</h2>
+      <p class="prose">Email is the fastest way to reach me. Every project above is public on GitHub &mdash; clone any of it and run <code>./mvnw spring-boot:run</code>.</p>
+      <ul class="contact-list">
+        <li><span>Email</span><a href="mailto:rkmaity13@gmail.com">rkmaity13@gmail.com</a></li>
+        <li><span>Phone</span><a href="tel:+919867554959">+91 98675 54959</a></li>
+        <li><span>LinkedIn</span><a href="https://linkedin.com/in/rahulmaity" rel="noopener">linkedin.com/in/rahulmaity</a></li>
+        <li><span>GitHub</span><a href="https://github.com/rahulmaity0" rel="noopener">github.com/rahulmaity0</a></li>
+        <li><span>Location</span>
+<span class="plain">Mumbai, India</span></li>
+      </ul>
+    </div>
+  </section>
+
+</main>
+
+<footer class="foot">
+  <p>Rahul Maity &middot; Mumbai, India</p>
+  <p><span id="year">2026</span> &middot; built with hand-written HTML and CSS</p>
+</footer>
+
+<script src="main.js"></script>
+</body>
+</html>
