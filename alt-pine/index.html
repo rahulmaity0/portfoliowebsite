@@ -55,7 +55,6 @@
       <p>I graduated in Artificial Intelligence &amp; Data Science and have spent the time since on the server side, in <strong>Java and Spring Boot</strong>. The projects below taught me the most, and they keep coming back to the same three things.</p>
       <p><strong>Getting the numbers right.</strong> The jewellery ledger runs a real gold business, so a rounding error isn't a bug report, it's gold missing from a locker. That meant <code>BigDecimal</code> with explicit rounding everywhere, one <code>@Transactional</code> boundary around inventory and balance so they can't drift apart, and rules the service refuses to break.</p>
       <p><strong>Testing properly.</strong> On the payments framework I wrote both the API and the tests, which is the quickest way to find out how much of a system lives in its unhappy paths: duplicate payments, insufficient funds, high-value transfers held for fraud review.</p>
-      <p><strong>Understanding the layer below.</strong> Beyond the résumé projects I've built an event-driven Kafka pipeline and a retrieval-augmented service on Spring AI, mostly to find out what changes when a call becomes a message on a topic, or when an answer has to come from a document instead of a model's memory.</p>
     </div>
   </section>
 
@@ -99,14 +98,7 @@
 <span>DBMS</span>
 <span>SDLC</span></dd>
         </div>
-        <div class="stack-group">
-          <dt>Also built with</dt>
-          <dd><span>Apache Kafka</span>
-<span>Spring AI</span>
-<span>Docker Compose</span>
-<span>Metabase</span></dd>
-        </div>
-      </dl>
+        </dl>
     </div>
   </section>
 
@@ -173,43 +165,7 @@
           </div>
         </li>
 
-        <li class="record">
-          <div class="record-meta">
-            <span class="domain">Streaming</span>
-            <span class="repo">ecommerce-stream-analytics</span>
-          </div>
-          <div class="record-main">
-            <h2>E-Commerce Stream Analytics Pipeline</h2>
-            <p class="record-role">Two Spring Boot services, one Kafka topic, a database and a dashboard.</p>
-            <p class="prose">A producer service mints order events onto a Kafka topic; a consumer service reads them, writes to PostgreSQL and exposes analytics endpoints, with Metabase reading the same tables for revenue, top-product and regional dashboards. Kafka sits in the middle so the two services never call each other. The consumer can be down for a while and catch up from its offset when it comes back. Duplicate events are handled by making <code>order_id</code> the primary key.</p>
-            <p class="flow"><span>producer-service</span>
-<span>kafka topic</span>
-<span>consumer-service</span>
-<span>postgres</span>
-<span>metabase</span></p>
-            <ul class="tags"><li>Spring Kafka</li><li>PostgreSQL</li><li>Docker Compose</li><li>Metabase</li><li>Multi-module Maven</li></ul>
-            <p class="links"><a href="https://github.com/rahulmaity0/ecommerce-stream-analytics" rel="noopener">Source &rarr;</a></p>
-          </div>
-        </li>
 
-        <li class="record">
-          <div class="record-meta">
-            <span class="domain">Retrieval AI</span>
-            <span class="repo">document-rag-api</span>
-          </div>
-          <div class="record-main">
-            <h2>Document RAG API</h2>
-            <p class="record-role">Ask questions of a PDF and get answers from the PDF, not from the model.</p>
-            <p class="prose">Uploaded PDFs get parsed page by page with Spring AI's <code>PagePdfDocumentReader</code>, embedded, then indexed into a vector store. A question runs a similarity search first, and the chat client answers strictly from the chunks that come back &mdash; the constraint is the feature, because it is what stops the model from filling gaps with plausible fiction. Endpoints sit behind Spring Security.</p>
-            <p class="flow"><span>PDF upload</span>
-<span>chunk + embed</span>
-<span>vector store</span>
-<span>similarity search</span>
-<span>grounded answer</span></p>
-            <ul class="tags"><li>Spring AI</li><li>OpenAI</li><li>Vector store</li><li>Spring Security</li><li>Java 17</li></ul>
-            <p class="links"><a href="https://github.com/rahulmaity0/document-rag-api" rel="noopener">Source &rarr;</a></p>
-          </div>
-        </li>
 
       </ol>
     </div>

@@ -130,49 +130,7 @@
         <p class="go"><a href="https://github.com/rahulmaity0/url-shortener" rel="noopener">View source on GitHub</a></p>
       </li>
 
-      <li class="card">
-        <p class="label">Streaming</p>
-        <h3>E-Commerce Stream Analytics Pipeline</h3>
-        <p class="one">Two Spring Boot services that never call each other, with a Kafka topic in between.</p>
-        <ul class="points">
-          <li>A producer service publishes order events; a consumer reads them, writes to PostgreSQL and exposes analytics endpoints.</li>
-          <li>Metabase reads the same tables for revenue, top-product and regional dashboards.</li>
-          <li>The consumer can be down for a while and catch up from its offset when it returns. Duplicates are handled by making <code>order_id</code> the primary key.</li>
-        </ul>
-        <p class="pipe"><span>producer-service</span>
-<span>kafka topic</span>
-<span>consumer-service</span>
-<span>postgres</span>
-<span>metabase</span></p>
-        <ul class="chips"><li>Spring Kafka</li>
-<li>PostgreSQL</li>
-<li>Docker Compose</li>
-<li>Metabase</li>
-<li>Multi-module Maven</li></ul>
-        <p class="go"><a href="https://github.com/rahulmaity0/ecommerce-stream-analytics" rel="noopener">View source on GitHub</a></p>
-      </li>
 
-      <li class="card">
-        <p class="label">Retrieval AI</p>
-        <h3>Document RAG API</h3>
-        <p class="one">Ask a question of an uploaded PDF and get an answer out of the PDF.</p>
-        <ul class="points">
-          <li>PDFs are parsed page by page with Spring AI's <code>PagePdfDocumentReader</code>, embedded, then indexed into a vector store.</li>
-          <li>A question runs a similarity search first, and the chat client answers only from the chunks that come back. Without that restriction it starts making things up.</li>
-          <li>Endpoints sit behind Spring Security.</li>
-        </ul>
-        <p class="pipe"><span>PDF upload</span>
-<span>chunk + embed</span>
-<span>vector store</span>
-<span>similarity search</span>
-<span>grounded answer</span></p>
-        <ul class="chips"><li>Spring AI</li>
-<li>OpenAI</li>
-<li>Vector store</li>
-<li>Spring Security</li>
-<li>Java 17</li></ul>
-        <p class="go"><a href="https://github.com/rahulmaity0/document-rag-api" rel="noopener">View source on GitHub</a></p>
-      </li>
 
     </ol>
   </section>
@@ -186,7 +144,6 @@
       <div><dt class="label">Testing &amp; QA</dt><dd>REST Assured &middot; JUnit 5 &middot; MockMvc &middot; API testing &middot; Regression testing</dd></div>
       <div><dt class="label">Tools</dt><dd>Git &middot; Maven &middot; GitHub Actions &middot; Allure</dd></div>
       <div><dt class="label">Concepts</dt><dd>OOP &middot; Data structures &amp; algorithms &middot; DBMS &middot; SDLC</dd></div>
-      <div><dt class="label">Also built with</dt><dd>Apache Kafka &middot; Spring AI &middot; Docker Compose &middot; Metabase</dd></div>
     </dl>
   </section>
 
