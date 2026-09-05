@@ -163,7 +163,7 @@ code { font-family: var(--ff-mono); font-size: .84em; color: var(--ink); backgro
 
 .plot { margin: 2.4rem 0 0; }
 .plot figcaption { margin-bottom: .7rem; }
-#stream {
+#life {
   display: block; width: 100%; height: clamp(190px, 32vw, 290px);
   border: 1px solid var(--line-2); background: var(--surface);
 }

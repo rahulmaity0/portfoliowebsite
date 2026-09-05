@@ -58,20 +58,26 @@
     targets.forEach(function (el) { spy.observe(el); });
   }
 
-  /* ── stream plot ───────────────────────────────────────────────────────
-     One topic, three partitions, events travelling producer → consumer.
-     12s loop, deterministic from the clock so it never drifts.
+  /* ── Conway's Game of Life ─────────────────────────────────────────────
+     Seeded at random, stepped every 180ms. Reseeds when the board settles
+     into still lifes and blinkers, which it always eventually does.
      ------------------------------------------------------------------- */
-  var canvas = document.getElementById("stream");
+  var canvas = document.getElementById("life");
   if (!canvas || !canvas.getContext) { return; }
   var ctx = canvas.getContext("2d");
 
-  var PERIOD = 12000, TRAVEL = 4200, SPACING = 800, LANES = 3;
-  var COUNT = Math.round(PERIOD / SPACING);
-  var W = 0, H = 0;
+  var CELL = 14, STEP = 190, DENSITY = 0.22, MAX_GEN = 600, STALE = 14;
+  var W = 0, H = 0, cols = 0, rows = 0;
+  var board = [], gen = 0, lastStep = 0, sums = [], stale = 0;
   var still = null;
 
   function token(name) { return getComputedStyle(root).getPropertyValue(name).trim(); }
+
+  function seed() {
+    board = new Array(cols * rows);
+    for (var i = 0; i < board.length; i++) { board[i] = Math.random() < DENSITY ? 1 : 0; }
+    gen = 0; sums = []; stale = 0;
+  }
 
   function resize() {
     var rect = canvas.getBoundingClientRect();
@@ -80,104 +86,72 @@
     canvas.width = Math.round(W * dpr);
     canvas.height = Math.round(H * dpr);
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    var nc = Math.max(12, Math.floor(W / CELL));
+    var nr = Math.max(6, Math.floor((H - 22) / CELL));
+    if (nc !== cols || nr !== rows) { cols = nc; rows = nr; seed(); }
   }
 
-  function laneY(i) { return H * 0.28 + i * (H * 0.22); }
-  function geom() {
-    return { x0: W * 0.13, xs: W * 0.50, x1: W * 0.87, ym: H * 0.50 };
-  }
-
-  function pointAt(u, lane) {
-    var g = geom();
-    if (u < 0.45) {
-      return { x: g.x0 + (g.xs - g.x0) * (u / 0.45), y: g.ym };
+  /* one generation, wrapping at the edges so gliders leave and come back */
+  function step() {
+    var next = new Array(cols * rows), sum = 0;
+    for (var y = 0; y < rows; y++) {
+      for (var x = 0; x < cols; x++) {
+        var n = 0;
+        for (var dy = -1; dy <= 1; dy++) {
+          for (var dx = -1; dx <= 1; dx++) {
+            if (!dx && !dy) { continue; }
+            n += board[((y + dy + rows) % rows) * cols + ((x + dx + cols) % cols)];
+          }
+        }
+        var alive = board[y * cols + x];
+        var live = (alive && (n === 2 || n === 3)) || (!alive && n === 3) ? 1 : 0;
+        next[y * cols + x] = live;
+        if (live) { sum += (x * 7 + y * 13 + 1); }
+      }
     }
-    var t = (u - 0.45) / 0.55;
-    var fan = Math.min(1, t / 0.35);
-    var ease = fan * fan * (3 - 2 * fan);
-    return { x: g.xs + (g.x1 - g.xs) * t, y: g.ym + (laneY(lane) - g.ym) * ease };
+    board = next; gen++;
+
+    /* a repeated checksum means still lifes and blinkers — time to reseed */
+    stale = sums.indexOf(sum) !== -1 ? stale + 1 : 0;
+    sums.push(sum);
+    if (sums.length > 6) { sums.shift(); }
+    if (stale > STALE || gen > MAX_GEN) { seed(); }
   }
 
-  function draw(t) {
-    var g = geom();
-    var cGrid = token("--grid"), cLine = token("--line-2");
-    var cAccent = token("--accent"), cMuted = token("--muted");
-
+  function draw() {
     ctx.clearRect(0, 0, W, H);
-
-    /* blueprint grid */
-    ctx.strokeStyle = cGrid; ctx.lineWidth = 1;
-    ctx.beginPath();
-    for (var x = 0; x <= W; x += 32) { ctx.moveTo(x + .5, 0); ctx.lineTo(x + .5, H); }
-    for (var y = 0; y <= H; y += 32) { ctx.moveTo(0, y + .5); ctx.lineTo(W, y + .5); }
-    ctx.stroke();
-
-    /* topic spine and partition lanes */
-    ctx.strokeStyle = cLine; ctx.lineWidth = 1;
-    ctx.beginPath();
-    ctx.moveTo(g.x0, g.ym); ctx.lineTo(g.xs, g.ym);
-    ctx.stroke();
-
-    for (var i = 0; i < LANES; i++) {
-      var ly = laneY(i);
-      ctx.beginPath();
-      ctx.moveTo(g.xs, g.ym);
-      ctx.bezierCurveTo(g.xs + (g.x1 - g.xs) * .35, g.ym, g.xs + (g.x1 - g.xs) * .35, ly, g.x1, ly);
-      ctx.stroke();
-      /* consumer bar */
-      ctx.fillStyle = cLine;
-      ctx.fillRect(g.x1, ly - 7, 2, 14);
+    var pad = Math.max(0, (W - cols * CELL) / 2);
+    ctx.fillStyle = token("--accent");
+    for (var y = 0; y < rows; y++) {
+      for (var x = 0; x < cols; x++) {
+        if (board[y * cols + x]) {
+          ctx.fillRect(pad + x * CELL + 1, y * CELL + 1, CELL - 2, CELL - 2);
+        }
+      }
     }
-
-    /* producer block */
-    ctx.fillStyle = cAccent;
-    ctx.fillRect(g.x0 - 5, g.ym - 5, 10, 10);
-
-    /* events in flight */
-    for (var e = 0; e < COUNT; e++) {
-      var age = ((t - e * SPACING) % PERIOD + PERIOD) % PERIOD;
-      if (age > TRAVEL) { continue; }
-      var u = age / TRAVEL;
-      var p = pointAt(u, e % LANES);
-      var fade = u > 0.92 ? (1 - u) / 0.08 : 1;
-      ctx.globalAlpha = Math.max(0, fade);
-      ctx.fillStyle = cAccent;
-      ctx.fillRect(p.x - 3, p.y - 3, 6, 6);
-      ctx.globalAlpha = 1;
-    }
-
-    /* labels */
     ctx.font = '9px "JetBrains Mono", ui-monospace, monospace';
-    ctx.fillStyle = cMuted;
-    ctx.textBaseline = "alphabetic";
-    ctx.fillText("producer", g.x0 - 5, g.ym - 14);
-    ctx.fillText("topic", g.x0 + (g.xs - g.x0) / 2 - 14, g.ym - 14);
-    for (var k = 0; k < LANES; k++) {
-      ctx.fillText("p" + k, g.x1 + 8, laneY(k) + 3);
-    }
-    var offset = String(Math.floor(t / SPACING));
-    while (offset.length < 3) { offset = "0" + offset; }
-    ctx.fillText("committed offset " + offset, g.x0 - 5, H - 10);
+    ctx.fillStyle = token("--muted");
+    var g = String(gen); while (g.length < 3) { g = "0" + g; }
+    ctx.fillText("generation " + g, pad + 1, H - 8);
   }
 
   var reduced = window.matchMedia("(prefers-reduced-motion: reduce)");
-
-  still = function () { resize(); draw(PERIOD * 0.55); };
+  still = function () { resize(); draw(); };
 
   function loop(now) {
-    draw(now % PERIOD);
+    if (now - lastStep > STEP) { lastStep = now; step(); draw(); }
     requestAnimationFrame(loop);
   }
 
   function start() {
     resize();
-    if (reduced.matches) { draw(PERIOD * 0.55); }
+    if (reduced.matches) { for (var i = 0; i < 4; i++) { step(); } draw(); }
     else { requestAnimationFrame(loop); }
   }
 
   window.addEventListener("resize", function () {
     resize();
-    if (reduced.matches) { draw(PERIOD * 0.55); }
+    if (reduced.matches) { draw(); }
   });
 
   if (document.fonts && document.fonts.ready) { document.fonts.ready.then(start); } else { start(); }

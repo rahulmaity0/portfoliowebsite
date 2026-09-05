@@ -22,11 +22,12 @@ main.js       theme toggle, nav highlighting, the hero animation
 alt-pine/     an earlier light-themed version I kept around
 ```
 
-The hero canvas draws order events moving from a producer, through a Kafka
-topic, into three partitions. It loops every 12 seconds off the system clock,
-and renders a single static frame for anyone who has reduced motion turned on.
-The numbers to change are `PERIOD`, `TRAVEL`, `SPACING` and `LANES` near the top
-of that section in `main.js`.
+The hero canvas runs Conway's Game of Life. It seeds at random, steps every
+180ms, and reseeds itself once the board settles into still lifes and blinkers,
+which it always does eventually. Edges wrap, so gliders leave one side and come
+back on the other. `CELL`, `STEP`, `DENSITY` and `STALE` near the top of that
+section in `main.js` are the knobs. With reduced motion turned on it draws four
+generations and stops.
 
 ## Adding a project
 
