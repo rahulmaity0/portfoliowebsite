@@ -206,14 +206,23 @@ code { font-family: var(--ff-mono); font-size: .84em; color: var(--ink); backgro
 .chips li::before { content: "\00b7"; margin-right: .5rem; color: var(--line-2); }
 .chips li:first-child::before { content: none; }
 
+.one {
+  margin: .55rem 0 .9rem; font-size: 1.06rem; color: var(--ink); max-width: 60ch;
+}
+.points { margin: 0 0 1.1rem; padding-left: 1.05rem; max-width: 68ch; color: var(--ink-soft); list-style: square; }
+.points li::marker { color: var(--accent); }
+.points li { margin-bottom: .5rem; font-size: .99rem; }
+.points li:last-child { margin-bottom: 0; }
+
 .go { margin: 0; }
 .go a {
-  font-family: var(--ff-pixel); font-size: .66rem; text-transform: uppercase;
-  letter-spacing: .12em; color: var(--accent); text-decoration: none;
-  border-bottom: 1px solid transparent; padding-bottom: 2px; transition: border-color .18s;
+  display: inline-block; font-family: var(--ff-pixel); font-size: .62rem;
+  text-transform: uppercase; letter-spacing: .12em; text-decoration: none;
+  color: var(--accent); border: 1px solid var(--accent); padding: .5rem .95rem;
+  transition: background .18s, color .18s;
 }
 .go a::after { content: " \2192"; }
-.go a:hover { border-bottom-color: var(--accent); }
+.go a:hover { background: var(--accent); color: var(--ground); }
 
 /* ── definition grids: stack, contact ────────────────────────────────── */
 .grid { margin: 0; display: flex; flex-direction: column; }

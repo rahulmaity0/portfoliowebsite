@@ -36,7 +36,7 @@
   <!-- ───────────────────── hero ───────────────────── -->
   <section class="wrap hero">
     <h1 class="pixel">I'm Rahul.</h1>
-    <p class="role">Backend Engineer</p>
+    <p class="role">Backend Developer &middot; Java &amp; Spring Boot</p>
     <ul class="socials">
       <li><a href="mailto:rkmaity13@gmail.com" aria-label="Email">
         <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="2.5" y="5" width="19" height="14" rx="1"/><path d="M2.5 6.5 12 13l9.5-6.5"/></svg></a></li>
@@ -66,7 +66,13 @@
       <li class="card card-lead">
         <p class="label">Ledger &amp; inventory</p>
         <h3>Jewellery Ledger &amp; Inventory System</h3>
-        <p class="say">Every issue and receipt updates both the locker inventory and the client's balance inside one <code>@Transactional</code> method, so the two can never drift out of sync. The making charge works as a purity uplift: the client is billed at purity plus making charge, but the locker only loses the metal that actually left. The gap between the two is the margin. <code>BigDecimal</code> with explicit <code>HALF_UP</code> rounding throughout, and two rules the service checks instead of assuming: an issue can't exceed the gold in the locker, and a receipt can't exceed what the client owes. REST endpoints cover clients, per-client ledgers, a dashboard and a monthly JPA report, behind stateless JWT auth.</p>
+        <p class="one">The backend that runs the books of a working gold manufacturing business &mdash; my family's.</p>
+        <ul class="points">
+          <li>One <code>@Transactional</code> method updates the locker inventory and the client's balance together, so the two can't drift apart.</li>
+          <li>Making charge is modelled as a purity uplift: the client is billed at purity plus charge, but the locker only loses the metal that actually left. The gap between them is the margin.</li>
+          <li><code>BigDecimal</code> with <code>HALF_UP</code> throughout, and two rules checked rather than assumed &mdash; no issue beyond locker stock, no receipt beyond what's owed.</li>
+          <li>REST endpoints for clients, per-client ledgers, a dashboard and a monthly JPA report, behind stateless JWT auth.</li>
+        </ul>
         <p class="pipe"><span>POST /api/transactions</span>
 <span>@Transactional</span>
 <span>locker + client balance</span>
@@ -77,13 +83,18 @@
 <li>JWT + BCrypt</li>
 <li>JPA / Hibernate</li>
 <li>BigDecimal</li></ul>
-        <p class="go"><a href="https://github.com/rahulmaity0/Inventory-Management" rel="noopener">Source</a></p>
+        <p class="go"><a href="https://github.com/rahulmaity0/Inventory-Management" rel="noopener">View source on GitHub</a></p>
       </li>
 
       <li class="card">
         <p class="label">SDET</p>
         <h3>Payments API Test Automation Framework</h3>
-        <p class="say">A Spring Boot payments API for transfers, merchant payments and balances, plus the REST Assured suite that tests it. I wrote both sides. An API client, reusable request specs, request models, a test-data factory and a shared base class keep the HTTP setup out of the test classes, so those only hold assertions. The tests go after the cases that cost money: duplicate payments that must stay idempotent, insufficient funds, and high-value payments held for fraud review. It runs against a real embedded server on a random port, and GitHub Actions publishes an Allure report on every push.</p>
+        <p class="one">A Spring Boot payments API and the REST Assured suite that tests it. I wrote both sides.</p>
+        <ul class="points">
+          <li>An API client, reusable request specs, request models, a test-data factory and a shared base class keep the HTTP setup out of the test classes, so those only hold assertions.</li>
+          <li>The tests go after the cases that cost money: duplicate payments that must stay idempotent, insufficient funds, and high-value payments held for fraud review.</li>
+          <li>Runs against a real embedded server on a random port, and GitHub Actions publishes an Allure report on every push.</li>
+        </ul>
         <p class="pipe"><span>test</span>
 <span>request spec</span>
 <span>payments API</span>
@@ -94,13 +105,18 @@
 <li>Allure</li>
 <li>GitHub Actions</li>
 <li>JSON Schema</li></ul>
-        <p class="go"><a href="https://github.com/rahulmaity0/banking-api-test-automation-framework" rel="noopener">Source</a></p>
+        <p class="go"><a href="https://github.com/rahulmaity0/banking-api-test-automation-framework" rel="noopener">View source on GitHub</a></p>
       </li>
 
       <li class="card">
         <p class="label">Web service</p>
         <h3>URL Shortener Service</h3>
-        <p class="say">Shortens long URLs, redirects with an HTTP 302 and a <code>Location</code> header, and tracks a click count per link. Codes are six base62 characters, so about 56 billion of them. Each one is checked against the database before use, and after ten tries it gives up rather than looping forever. Click counts go up through JPA dirty checking inside a transaction instead of an explicit save, and Bean Validation throws out bad URLs before they reach the service.</p>
+        <p class="one">Long URLs in, six-character codes out, with a click count on every link.</p>
+        <ul class="points">
+          <li>Codes are six base62 characters, so about 56 billion of them. Each one is checked against the database before use, and after ten tries it gives up rather than looping forever.</li>
+          <li>Click counts go up through JPA dirty checking inside a transaction instead of an explicit save call.</li>
+          <li>Bean Validation throws out malformed URLs before they ever reach the service layer.</li>
+        </ul>
         <p class="pipe"><span>POST /api/urls</span>
 <span>base62 code</span>
 <span>collision check</span>
@@ -111,13 +127,18 @@
 <li>Bean Validation</li>
 <li>JUnit 5</li>
 <li>MockMvc</li></ul>
-        <p class="go"><a href="https://github.com/rahulmaity0/url-shortener" rel="noopener">Source</a></p>
+        <p class="go"><a href="https://github.com/rahulmaity0/url-shortener" rel="noopener">View source on GitHub</a></p>
       </li>
 
       <li class="card">
         <p class="label">Streaming</p>
         <h3>E-Commerce Stream Analytics Pipeline</h3>
-        <p class="say">A producer service mints order events onto a Kafka topic; a consumer service reads them, writes to PostgreSQL and exposes analytics endpoints, with Metabase reading the same tables for revenue, top-product and regional dashboards. Kafka sits in the middle so the two services never call each other. The consumer can be down for a while and catch up from its offset when it comes back. Duplicate events are handled by making <code>order_id</code> the primary key.</p>
+        <p class="one">Two Spring Boot services that never call each other, with a Kafka topic in between.</p>
+        <ul class="points">
+          <li>A producer service publishes order events; a consumer reads them, writes to PostgreSQL and exposes analytics endpoints.</li>
+          <li>Metabase reads the same tables for revenue, top-product and regional dashboards.</li>
+          <li>The consumer can be down for a while and catch up from its offset when it returns. Duplicates are handled by making <code>order_id</code> the primary key.</li>
+        </ul>
         <p class="pipe"><span>producer-service</span>
 <span>kafka topic</span>
 <span>consumer-service</span>
@@ -128,13 +149,18 @@
 <li>Docker Compose</li>
 <li>Metabase</li>
 <li>Multi-module Maven</li></ul>
-        <p class="go"><a href="https://github.com/rahulmaity0/ecommerce-stream-analytics" rel="noopener">Source</a></p>
+        <p class="go"><a href="https://github.com/rahulmaity0/ecommerce-stream-analytics" rel="noopener">View source on GitHub</a></p>
       </li>
 
       <li class="card">
         <p class="label">Retrieval AI</p>
         <h3>Document RAG API</h3>
-        <p class="say">Uploaded PDFs get parsed page by page with Spring AI's <code>PagePdfDocumentReader</code>, embedded, then indexed into a vector store. A question runs a similarity search first and the chat client answers only from the chunks that come back. That restriction is the whole point &mdash; without it the model starts making things up. Endpoints sit behind Spring Security.</p>
+        <p class="one">Ask a question of an uploaded PDF and get an answer out of the PDF.</p>
+        <ul class="points">
+          <li>PDFs are parsed page by page with Spring AI's <code>PagePdfDocumentReader</code>, embedded, then indexed into a vector store.</li>
+          <li>A question runs a similarity search first, and the chat client answers only from the chunks that come back. Without that restriction it starts making things up.</li>
+          <li>Endpoints sit behind Spring Security.</li>
+        </ul>
         <p class="pipe"><span>PDF upload</span>
 <span>chunk + embed</span>
 <span>vector store</span>
@@ -145,7 +171,7 @@
 <li>Vector store</li>
 <li>Spring Security</li>
 <li>Java 17</li></ul>
-        <p class="go"><a href="https://github.com/rahulmaity0/document-rag-api" rel="noopener">Source</a></p>
+        <p class="go"><a href="https://github.com/rahulmaity0/document-rag-api" rel="noopener">View source on GitHub</a></p>
       </li>
 
     </ol>
@@ -172,8 +198,8 @@
       <p class="label">Jun 2024 &ndash; May 2026 &middot; Mumbai</p>
       <h3>Family Business <span class="sub">&mdash; Business Operations &amp; Client Relations</span></h3>
       <ul class="bullets">
-        <li>Managed day-to-day operations for a gold manufacturing business, growing sales and revenue through direct client relationship management, and digitized manual inventory and transaction tracking to improve record accuracy and reporting turnaround.</li>
-        <li>Continued building backend engineering skills independently alongside operational responsibilities, applying Java and Spring Boot to real business problems from the role above.</li>
+        <li>Ran day-to-day operations for a gold manufacturing business &mdash; client relationships, sales, and the inventory and transaction records the whole operation depends on.</li>
+        <li>Digitised those records myself, which is where the ledger system above came from. The problems were real ones from the floor, so the software had to hold up against them.</li>
       </ul>
     </div>
 
