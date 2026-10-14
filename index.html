@@ -130,6 +130,28 @@
         <p class="go"><a href="https://github.com/rahulmaity0/url-shortener" rel="noopener">View source on GitHub</a></p>
       </li>
 
+      <li class="card">
+        <p class="label">Retrieval AI</p>
+        <h3>Document RAG API</h3>
+        <p class="one">Upload a PDF, ask a question, and get an answer built from that PDF's own pages.</p>
+        <ul class="points">
+          <li>Spring AI's <code>PagePdfDocumentReader</code> reads the PDF one page at a time. Each page is embedded with OpenAI and stored in an in-memory vector store.</li>
+          <li>A question first runs a similarity search for the three closest pages. Those pages go into the prompt as context, so the chat client answers from the document instead of from what the model already knows.</li>
+          <li>Both endpoints need HTTP Basic auth through Spring Security.</li>
+        </ul>
+        <p class="pipe"><span>POST /upload</span>
+<span>page-wise embed</span>
+<span>vector store</span>
+<span>top-3 search</span>
+<span>grounded answer</span></p>
+        <ul class="chips"><li>Spring AI</li>
+<li>OpenAI</li>
+<li>Vector store</li>
+<li>Spring Security</li>
+<li>Java 17</li></ul>
+        <p class="go"><a href="https://github.com/rahulmaity0/document-rag-api" rel="noopener">View source on GitHub</a></p>
+      </li>
+
 
 
     </ol>
